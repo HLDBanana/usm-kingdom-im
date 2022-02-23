@@ -1,0 +1,46 @@
+spring:
+  shardingsphere:
+    datasource:
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://182.92.219.202:3306/hldIM?useUnicode=true
+        password: 15090667928Hh_
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+      names: master,slave
+      slave:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://182.92.219.202:3306/hldIM?useUnicode=true
+        password: 15090667928Hh_
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+    masterslave:
+      master-data-source-name: master
+      slave-data-source-names: slave
+    sharding:
+      default-data-source-name: master
+  redis:
+    open: false  # 是否开启redis缓存  true开启   false关闭
+    database: 0
+    host: r-2zepy3qy5wj310jplipd.redis.rds.aliyuncs.com
+    port: 6379
+    password: X9fMp!guajqOI#Y7   # 密码（默认为空）
+    timeout: 6000ms  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+logging:
+  level:
+    com.baomidou.mybatisPlus: DEBUG
+    com.powernow:.usm.dao: DEBUG
+    org.springframework.boot.autoconfigure: ERROR
+    ## 去掉CONDITIONS EVALUATION REPORT日志打印
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+netty:
+  port: 12345
+
+

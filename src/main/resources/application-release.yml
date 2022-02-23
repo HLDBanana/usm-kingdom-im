@@ -1,0 +1,112 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: master,slave
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: ${master_jdbc_url}
+        password: ${master_jdbc_password}
+        type: com.zaxxer.hikari.HikariDataSource
+        username: ${master_jdbc_username}
+      slave:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: ${slave_jdbc_url}
+        password: ${slave_jdbc_password}
+        type: com.zaxxer.hikari.HikariDataSource
+        username: ${slave_jdbc_username}
+    masterslave:
+      master-data-source-name: master
+      slave-data-source-names: slave
+    sharding:
+      default-data-source-name: master
+  redis:
+    open: false  # 是否开启redis缓存  true开启   false关闭 myredis-master.default
+    database: ${redis_db}
+    host: 172.31.30.76
+    port: 6379
+    password: ${redis_password}   # 密码（默认为空）
+    timeout: 6000ms  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+logging:
+  level:
+    com.baomidou.mybatisPlus: DEBUG
+    com.powernow:.usm.dao: DEBUG
+    org.springframework.boot.autoconfigure: ERROR
+    ## 去掉CONDITIONS EVALUATION REPORT日志打印
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+chain:
+  listenAddress: '0x0000000000000000000000000000000000000000'
+  zeroAddress: '0x0000000000000000000000000000000000000000'
+  eggSignPrivKey: ${bsc_sign_privkey}
+  potionSignPrivkey: ${bsc_sign_privkey}
+  diamondSignPrivkey: ${bsc_sign_privkey}
+  RACAAddress: '0x12BB890508c125661E03b09EC06E404bc9289040'
+  PotionAddress: '0x51353799F8550c9010a8b0CbFE6C02cA96E026E2'
+  DiamondAddress: '0x5dc3FeD851e07715965E5727592CE33d14b7828D'
+  MetamonEggAddress: '0xD40C03B8680D4b6a4d78FC3C6F6A28C854e94A79'
+  NMetamonAddress: '0xF24Bf668Aa087990f1d40aBAbF841456E771913c'
+  RMetamonAddress: '0x982B5345D0f213ecb2a8e6e24336909f59B1d6E3'
+  SRMetamonAddress: '0xf278dcAe8E18E1D162Ed95bD9FF6cE8aaaBB4EE2'
+  SSRMetamonAddress: '0x280825cd4872ECBA941416EAccDaA3F4d9Bf6EA7'
+  MetamonWalletAddress: '0xEF0Dff2D82B09c6A9fB9Cd261B3FcBb7b0560b28'
+  MetamonWalletV2Address: '0x0658A6934aEE5F3479f1FE19f8A56F4853901fec'
+  MetamonAdminPrivKey: ${bsc_sign_privkey}
+  MPBAddress: '0x061C6eECA7B14cF4eC1B190Dd879008DD7d7E470'
+  batchRewardAddress: '0xAd6ED49941B486D4b8Fbfe0D9b93cFeca0F13651'
+  gasLimit: 9000000
+  #web3j.client-address: http://3.14.164.117:18545/
+web3j:
+  client-address: 'https://bsc-dataseed.binance.org/'
+  admin-client: false
+#  zipkin:
+#    base-url: http://182.92.219.202:9411/ #zipkin 的服务端地址
+#  sleuth:
+#    sampler:
+#      rate: 1 # 采集日志比率 如 0.1
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true #使用IP地址向Eureka Server注册
+#  client:
+#    service-url:
+#      defaultZone: http://182.92.219.202:8761/eureka/
+#      #defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+#    register-with-eureka: true
+#    fetch-registry: true
+#
+#ribbon:
+#  ConnectTimeout: 50000
+#  ReadTimeout: 10000
+#  MaxAutoRetries: 0
+#  OkToRetryOnAllOperations: false
+#  ServerListRefreshInterval: 2000
+#  MaxAutoRetriesNextServer: 3
+#
+#feign:
+#  hystrix:
+#    enabled: true
+#  httpclient:
+#    enabled: false
+#  okhttp:
+#    enabled: true
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 10000 #链接超时
+#        readTimeout: 10000    #读超时
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000

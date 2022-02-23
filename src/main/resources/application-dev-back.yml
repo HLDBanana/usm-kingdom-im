@@ -1,0 +1,103 @@
+spring:
+  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://nftm-dev-recover.cqqgcco1q2hb.us-east-2.rds.amazonaws.com:13206/usm?useUnicode=true
+    username: admin
+    password: ijYESEpEpTx41UShetD9zjFizzUMwQsyhD7nRil
+  redis:
+    open: false  # 是否开启redis缓存  true开启   false关闭
+    database: 0
+    host: r-2zepy3qy5wj310jplipd.redis.rds.aliyuncs.com
+    port: 6379
+    password: X9fMp!guajqOI#Y7   # 密码（默认为空）
+    timeout: 6000ms  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+
+logging:
+  level:
+    com.baomidou.mybatisPlus: DEBUG
+    com.powernow:.usm.dao: DEBUG
+    org.springframework.boot.autoconfigure: ERROR
+    ## 去掉CONDITIONS EVALUATION REPORT日志打印
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+# 链上地址配置
+chain:
+  listenAddress: '0x0000000000000000000000000000000000000000'
+  zeroAddress: '0x0000000000000000000000000000000000000000'
+  eggSignPrivKey: '54bfacd72a61746b0054fb6a66e605d644f804f827e361ca06c729ecc54827fe'
+  potionSignPrivkey: '54bfacd72a61746b0054fb6a66e605d644f804f827e361ca06c729ecc54827fe'
+  diamondSignPrivkey: '54bfacd72a61746b0054fb6a66e605d644f804f827e361ca06c729ecc54827fe'
+  RACAAddress: '0xEd8bF39e18D547b72c0B2CF0a03E3f501380B742'
+  PotionAddress: '0x48ff8346101E55038ebdF0abB56144A75D1bF7cF'
+  DiamondAddress: '0x87e1c80615CEea9a00D1C7D93A6972AC60F14291'
+  MetamonEggAddress: '0x6ae7e8414BE0564f0197D944bBE618BAFC5BAaDA'
+  NMetamonAddress: '0xed06dC3D06C30c42626ECcf69f8967d83C31AE57'
+  RMetamonAddress: '0x1644b607030a6C4467F5CdD49BFA327427c3318b'
+  SRMetamonAddress: '0x170179C73768060096F16B96c4545ba350b08aAF'
+  SSRMetamonAddress: '0x5B2699f118A50a45BAa39d8a0Cd5F8F95979353C'
+  MetamonWalletAddress: '0xB2E89c53735835e09b7C6c3a5C3CA121719F1460'
+  MetamonWalletV2Address: '0xF32856675607268912B3fE6eDb1C8Ff4aF41EBDa'
+  MetamonAdminPrivKey: 'fe05d371676ce6b5a70e8cafd8a80848cf9cfb41cc5785570ea6d173ad20fb4b'
+  MPBAddress: '0x061C6eECA7B14cF4eC1B190Dd879008DD7d7E470'
+  batchRewardAddress:
+  gasLimit: 9000000
+web3j:
+  client-address: 'https://data-seed-prebsc-1-s1.binance.org:8545/'
+  #client-address: https://bsc-dataseed.binance.org/
+  admin-client: false
+
+
+#  zipkin:
+#    base-url: http://182.92.219.202:9411/ #zipkin 的服务端地址
+#  sleuth:
+#    sampler:
+#      rate: 1 # 采集日志比率 如 0.1
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true #使用IP地址向Eureka Server注册
+#  client:
+#    service-url:
+#      defaultZone: http://182.92.219.202:8761/eureka/
+#      #defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+#    register-with-eureka: true
+#    fetch-registry: true
+#
+#ribbon:
+#  ConnectTimeout: 50000
+#  ReadTimeout: 10000
+#  MaxAutoRetries: 0
+#  OkToRetryOnAllOperations: false
+#  ServerListRefreshInterval: 2000
+#  MaxAutoRetriesNextServer: 3
+#
+#
+#feign:
+#  hystrix:
+#    enabled: true
+#  httpclient:
+#    enabled: false
+#  okhttp:
+#    enabled: true
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 10000 #链接超时
+#        readTimeout: 10000    #读超时
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000
